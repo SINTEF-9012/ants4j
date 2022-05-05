@@ -1,27 +1,28 @@
 package no.sintef.giot.bhp.core;
 
 import java.util.ServiceLoader;
+import org.apache.log4j.Logger;
 
 public class MainClass {
+	
+	final static Logger logger = Logger.getLogger(MainClass.class);
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
+				
 		//search for load data implementations
         ServiceLoader<LoadDataService> ldLoader = ServiceLoader.load(LoadDataService.class);
         System.out.println("Found LoadDataService implementations: ");
         for (LoadDataService ld : ldLoader) {
-        	System.out.println(ld.getClass().toString());
+        	logger.debug(ld.getClass().toString());
         	ld.getDataAsJson();
-            //Log.i(TAG, ld.getDataAsCSV());
-            //Log.i(TAG, ld.getDataAsJson());
         }
 
         //search for inference implementations
         ServiceLoader<InferenceService> inLoader = ServiceLoader.load(InferenceService.class);
         System.out.println("Found InferenceService implementations: ");
         for (InferenceService in : inLoader) {
-        	System.out.println(in.getClass().toString());
+        	logger.debug(in.getClass().toString());
         	in.infer("");
         }
 
