@@ -65,7 +65,9 @@ public class PythonInferenceImpl extends InferenceService {
 	    
 	    final ProcessBuilder pb = new ProcessBuilder();
 	    pb.redirectErrorStream(true);
-	    pb.command("python", script.getPath(), data.getPath());	    
+	    //pb.command("python", script.getPath(), data.getPath());	    
+	    
+	    pb.command("python3", "/python/inference.py", "/python/hrv.csv");	  
 	    	    
 	    try {
 	        //Process p = installScriptBuilder.start();
